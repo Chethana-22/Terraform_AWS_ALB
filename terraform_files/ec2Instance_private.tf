@@ -10,4 +10,8 @@ module "ec2_private" {
   user_data = file("${path.module}/app1-install.sh")
   tags = local.common_tags
 
+  vpc_security_group_ids = [module.private_sg.security_group_id]
+  for_each = toset(["0", "1"])
+  subnet_id =  element(module.vpc.private_subnets, tonumber(each.key))
 }
+
