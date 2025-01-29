@@ -59,20 +59,20 @@ Follow these steps to deploy the AWS ALB with context path routing using Terrafo
    cd terraformALB
 
 2. **Initialize Terraform**:
-  ```bash
-  terraform init
+   ```bash
+   terraform init
 
 This downloads the required provider plugins and initializes the working directory.
 
 3. **Review the execution plan**:
-  ```bash
-  terraform plan
+   ```bash
+   terraform plan
 
 This command generates an execution plan, showing the resources that Terraform will create.
 
 4. Apply the configuration:
-  ```bash
-  terraform apply
+   ```bash
+   terraform apply
 
 Type yes when prompted to confirm the resource creation.
 Wait for Terraform to complete provisioning the resources.
@@ -94,5 +94,5 @@ Routes to EC2 instances hosting App2.
 
 6. Cleanup
 To delete the resources created by Terraform, run:
-  ```bash
-  terraform destroy
+   ```bash
+   terraform destroy
