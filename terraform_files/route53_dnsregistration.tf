@@ -1,13 +1,10 @@
-data "aws_route53_zone" "mydomain" {
-  name = "customdomain.com"
-}
-
-output "mydomain_zoneid" {
-  description = "Route 53 zone id"
-  value = data.aws_route53_zone.mydomain.zone_id
-}
-
-output "mydomain_zonename" {
-  description = "Route 53 Zone name"
-  value = data.aws_route53_zone.mydomain.name
+resource "aws_route53_record" "apps_dns" {
+  zone_id = data.aws_route53_zone.mydomain.zone_id
+  name = "apps.customdomain.com"
+  type = "A"
+  alias {
+    name = module.elb.dns_name
+    zone_id = module.elb.zone_id
+    evaluate_target_health = true
+  }
 }

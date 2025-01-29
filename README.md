@@ -15,11 +15,9 @@ This project demonstrates how to implement context path-based routing in an **AW
 
 - 📂 **Context Path Routing**:  
   - Implements path-based routing using ALB listener rules:
-    - `/*` returns a fixed response: `http://apps.devopsincloud.com`.  
-    - `/app1*` routes traffic to EC2 instances running **App1**:  
-      `http://apps.devopsincloud.com/app1/index.html`.  
+    - `/*` returns a fixed response: for the custom domain 
+    - `/app1*` routes traffic to EC2 instances running **App1**:    
     - `/app2*` routes traffic to EC2 instances running **App2**:  
-      `http://apps.devopsincloud.com/app2/index.html`.
 
 - 🔧 **Scalable and Modular Architecture**:  
   - Deploys **EC2 instances** for each application in **private subnets** to ensure security.  
@@ -38,7 +36,7 @@ This project demonstrates how to implement context path-based routing in an **AW
 ---
 
 ## **Architecture Diagram**
-*(Include an architecture diagram here if available. If not, you can skip this section.)*
+![Architecture image](image.png)
 
 ---
 
@@ -59,45 +57,42 @@ Follow these steps to deploy the AWS ALB with context path routing using Terrafo
    ```bash
    git clone https://github.com/Chethana-22/Terraform_AWS_ALB.git
    cd terraformALB
-Initialize Terraform:
 
-bash
-Copy code
-terraform init
+2. **Initialize Terraform**:
+  ```bash
+  terraform init
+
 This downloads the required provider plugins and initializes the working directory.
 
-Review the execution plan:
+3. **Review the execution plan**:
+  ```bash
+  terraform plan
 
-bash
-Copy code
-terraform plan
 This command generates an execution plan, showing the resources that Terraform will create.
 
-Apply the configuration:
+4. Apply the configuration:
+  ```bash
+  terraform apply
 
-bash
-Copy code
-terraform apply
 Type yes when prompted to confirm the resource creation.
 Wait for Terraform to complete provisioning the resources.
-Access the Applications
-Once the deployment is complete, you can access the applications using the following URLs:
+
+5. Access the Applications
+Once the deployment is complete, you can access the applications using the custom domain:
 
 Fixed Response:
-https://apps.devopsincloud.com
+https://apps.customdomain.com
 Returns a fixed response configured in ALB.
 
 App1:
-https://apps.devopsincloud.com/app1/index.html
+https://apps.customdomain.com/app1/index.html
 Routes to EC2 instances hosting App1.
 
 App2:
-https://apps.devopsincloud.com/app2/index.html
+https://apps.customdomain.com/app2/index.html
 Routes to EC2 instances hosting App2.
 
-Cleanup
+6. Cleanup
 To delete the resources created by Terraform, run:
-
-bash
-Copy code
-terraform destroy
+  ```bash
+  terraform destroy
